@@ -21,8 +21,6 @@ namespace Hetzer
         [STAThread]
         static void Main(string[] arguments)
         {
-            ConsoleManager.Instance.InitConsole();
-
             ITwitterCredentials credentials = Login.Instance.getCredentials();
             if (credentials == null) credentials = newCredentials(); ;
             if (credentials == null) return;
@@ -47,7 +45,9 @@ namespace Hetzer
         {
             var url = Login.Instance.startAuthFlow();
             Process.Start(url);
+            ConsoleManager.Instance.InitConsole();
             var pinCode = Console.ReadLine();
+            ConsoleManager.Instance.DestroyConsole();
             return Login.Instance.confirmAuthFlow(pinCode);
         }
     }

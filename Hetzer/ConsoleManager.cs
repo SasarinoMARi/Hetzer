@@ -25,7 +25,7 @@ class ConsoleManager
 
     ~ConsoleManager()
     {
-        if (consoleInitialized) FreeConsole();
+        DestroyConsole();
     }
 
     public static ConsoleManager Instance
@@ -42,10 +42,15 @@ class ConsoleManager
         }
     }
 
-    internal void InitConsole()
+    public void InitConsole()
     {
         if (!AttachConsole(-1))
             AllocConsole();
         consoleInitialized = true;
+    }
+
+    public void DestroyConsole()
+    {
+        if (consoleInitialized) FreeConsole();
     }
 }

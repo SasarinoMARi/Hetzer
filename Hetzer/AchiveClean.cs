@@ -17,7 +17,6 @@ namespace Hetzer
         {
             string[] path = {
                 "D:\\Downloads\\4071252374_028e8b5a458ed48f9065e709a99e456446bb9c5f\\data\\js\\tweets\\2015_11.js",
-                
                 "D:\\Downloads\\4071252374_028e8b5a458ed48f9065e709a99e456446bb9c5f\\data\\js\\tweets\\2015_12.js",
                 "D:\\Downloads\\4071252374_028e8b5a458ed48f9065e709a99e456446bb9c5f\\data\\js\\tweets\\2016_01.js",
                 "D:\\Downloads\\4071252374_028e8b5a458ed48f9065e709a99e456446bb9c5f\\data\\js\\tweets\\2016_02.js",
@@ -26,7 +25,6 @@ namespace Hetzer
                 "D:\\Downloads\\4071252374_028e8b5a458ed48f9065e709a99e456446bb9c5f\\data\\js\\tweets\\2016_05.js",
                 "D:\\Downloads\\4071252374_028e8b5a458ed48f9065e709a99e456446bb9c5f\\data\\js\\tweets\\2016_06.js",
                 "D:\\Downloads\\4071252374_028e8b5a458ed48f9065e709a99e456446bb9c5f\\data\\js\\tweets\\2016_10.js",
-                
                 };
             int c = 0;
             List<long> ids = new List<long>();

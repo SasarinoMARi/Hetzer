@@ -1,30 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 using System.Windows;
 using Tweetinvi;
+using Tweetinvi.Models;
 using Tweetinvi.Parameters;
 
 namespace Hetzer
 {
     class Program
     {
-        const string ct = "";
-        const string cs = "";
-        const string ut = "";
-        const string us = "";
 
         [STAThread]
         static void Main(string[] arguments)
         {
-            Auth.SetUserCredentials(ct, cs, ut, us);
-            while(true)
+            ConsoleManager.Instance.InitConsole();
+
+            ITwitterCredentials credentials = Login.Instance.getCredentials();
+            if (credentials == null) credentials = newCredentials(); ;
+            if (credentials == null) return;
+            Auth.SetCredentials(credentials);
+
+            //AchiveClean.clean();
+
+            while (true)
             {
+                Eraser.CreateEraser(50).StartErase();
                 Thread.Sleep(1000 * 60 * 10);
-                Eraser.CreateEraser().StartErase();
             }
 
             //var application = new Application
@@ -32,6 +41,14 @@ namespace Hetzer
             //    StartupUri = new Uri("MainWindow.xaml", UriKind.RelativeOrAbsolute)
             //};
             //application.Run();
+        }
+
+        private static ITwitterCredentials newCredentials()
+        {
+            var url = Login.Instance.startAuthFlow();
+            Process.Start(url);
+            var pinCode = Console.ReadLine();
+            return Login.Instance.confirmAuthFlow(pinCode);
         }
     }
 }

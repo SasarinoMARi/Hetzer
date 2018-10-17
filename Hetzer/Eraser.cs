@@ -11,7 +11,7 @@ namespace Hetzer
     class Eraser
     {
         int counter = 0;
-        readonly int safe_index = 20;
+        int safe_index = 0;
         long safe_id = 0;
 
         private Eraser()
@@ -19,9 +19,14 @@ namespace Hetzer
 
         }
 
-        public static Eraser CreateEraser()
+        public static Eraser CreateEraser(int leftTweet)
         {
-            if (Auth.Credentials != null) return new Eraser();
+            if (Auth.Credentials != null)
+            {
+                var o = new Eraser();
+                o.safe_index = leftTweet;
+                return o;
+            }
             else return null;
         }
 
@@ -44,6 +49,7 @@ namespace Hetzer
             {
                 if (++counter > safe_index && t.Id != safe_id)
                 {
+                    Console.WriteLine("Distroy: (" + t.CreatedAt.ToString("yyyy-MM-dd hh:mm") + ")" + t.Text);
                     t.Destroy();
                 }
                 else

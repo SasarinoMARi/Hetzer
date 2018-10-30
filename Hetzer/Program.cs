@@ -30,7 +30,7 @@ namespace Hetzer
 
             while (true)
             {
-                Eraser.CreateEraser(50).StartErase();
+                Eraser.CreateEraser(15).StartErase();
                 Thread.Sleep(1000 * 60 * 10);
             }
 

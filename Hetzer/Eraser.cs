@@ -33,7 +33,7 @@ namespace Hetzer
         public void StartErase()
         {
             while (Delete(GetTimeline())) { }
-            Message.PublishMessage(string.Format("Pulse : removed {0} tweet(s).", (counter - safe_index)), User.GetAuthenticatedUser().Id);
+            Message.PublishMessage(string.Format("Pulse : removed {0} tweet(s).", (counter - safe_index + 1)), User.GetAuthenticatedUser().Id);
         }
 
         public IEnumerable<Tweetinvi.Models.ITweet> GetTimeline()
